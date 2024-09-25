@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-multitol
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: multi-b
+  template:
+    metadata:
+      labels:
+        app: multi-b
+    spec:
+      containers:
+      - name: multitool
+        image: wbitt/network-multitool
+        ports:
+        - containerPort: 8080
+        env: 
+          - name: HTTP_PORT
+            value: "8090"
