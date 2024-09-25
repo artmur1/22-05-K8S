@@ -33,6 +33,30 @@
 
 ### Решение 1
 
+Создал Deployment приложения _frontend_ из образа nginx с количеством реплик 3 шт - https://github.com/artmur1/22-05-K8S/blob/main/files/deployment-frontend.yaml
+
+![](https://github.com/artmur1/22-05-K8S/blob/main/img/22-05-01-01.png)
+
+Создал Service для приложения frontend - https://github.com/artmur1/22-05-K8S/blob/main/files/svc-frontend.yaml
+
+![](https://github.com/artmur1/22-05-K8S/blob/main/img/22-05-01-02.png)
+
+Создал configmap.yaml для Deployment приложения _frontend_ - https://github.com/artmur1/22-05-K8S/blob/main/files/configmap.yaml
+
+![](https://github.com/artmur1/22-05-K8S/blob/main/img/22-05-01-03.png)
+
+Создал Deployment приложения _backend_ из образа multitool - https://github.com/artmur1/22-05-K8S/blob/main/files/deployment-backend.yaml
+
+![](https://github.com/artmur1/22-05-K8S/blob/main/img/22-05-01-04.png)
+
+Создал Service для приложения _backend_ - https://github.com/artmur1/22-05-K8S/blob/main/files/svc-backend.yaml
+
+![](https://github.com/artmur1/22-05-K8S/blob/main/img/22-05-01-05.png)
+
+Результат обращения из мультитула к сервисам:
+
+![](https://github.com/artmur1/22-05-K8S/blob/main/img/22-05-01-06.png)
+
 ------
 
 ### Задание 2. Создать Ingress и обеспечить доступ к приложениям снаружи кластера
@@ -43,6 +67,22 @@
 4. Предоставить манифесты и скриншоты или вывод команды п.2.
 
 ### Решение 2
+
+Включил Ingress-controller в MicroK8S:
+
+![](https://github.com/artmur1/22-05-K8S/blob/main/img/22-05-02-01.png)
+
+Создал Ingress, обеспечивающий доступ снаружи по IP-адресу кластера MicroK8S так, чтобы при запросе только по адресу открывался _frontend_ а при добавлении /api - _backend_:
+
+![](https://github.com/artmur1/22-05-K8S/blob/main/img/22-05-02-02.png)
+
+Доступ с помощью `curl` с локального компьютера к _frontend_:
+
+![](https://github.com/artmur1/22-05-K8S/blob/main/img/22-05-02-03.png)
+
+Доступ с помощью `curl` с локального компьютера к _backend_:
+
+![](https://github.com/artmur1/22-05-K8S/blob/main/img/22-05-02-04.png)
 
 ------
 
